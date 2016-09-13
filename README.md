@@ -1,0 +1,1 @@
+# WhitestormJS Plugin Registry
