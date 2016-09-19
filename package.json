@@ -1,0 +1,22 @@
+{
+  "name": "plugins",
+  "version": "0.0.0",
+  "description": "Search awesome whs plugins!",
+  "author": "Plusb Preco <plusb21@gmail.com>",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/WhitestormJS/plugins#readme",
+  "repository": "WhitestormJS/plugins",
+  "bugs": {
+    "url": "https://github.com/WhitestormJS/plugins/issues"
+  },
+  "devDependencies": {
+    "babel-preset-latest": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-1": "^6.13.0",
+    "webpack": "^1.13.2"
+  }
+}

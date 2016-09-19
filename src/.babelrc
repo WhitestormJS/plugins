@@ -1,0 +1,18 @@
+{
+  "env": {
+    "web": {
+      "presets": [
+        ["latest", {"modules": false}],
+        "stage-1",
+        "react"
+      ]
+    },
+    "web-development": {
+      "presets": [
+        "latest",
+        "stage-1",
+        "react"
+      ]
+    }
+  }
+}
