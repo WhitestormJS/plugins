@@ -6,7 +6,6 @@ import CleanWebpackPlugin from 'clean-webpack-plugin';
 const {
   DefinePlugin,
   LoaderOptionsPlugin,
-  HotModuleReplacementPlugin,
   optimize: {
     DedupePlugin,
     UglifyJsPlugin,
@@ -28,6 +27,7 @@ function config({dev = false} = {}) {
     entry: [
       ...(dev
         ? [
+          'react-hot-loader/patch',
           'webpack-dev-server/client?http://localhost:8080',
           'webpack/hot/only-dev-server',
         ]
@@ -37,43 +37,44 @@ function config({dev = false} = {}) {
     ],
     output: {
       path: join(__dirname, 'app'),
-      filename: 'bundle.[chunkhash].js',
+      filename: `bundle${dev ? '' : '.[chunkhash]'}.js`,
     },
     module: {
       loaders: [
         {
           test: /\.jsx?$/,
           include: join(__dirname, 'src'),
-          loaders: [...(dev ? ['react-hot'] : []), 'babel'],
+          loader: 'babel',
+          query: {
+            cacheDirectory: true,
+          },
         },
       ],
     },
-    plugins: dev
-      ? [
-        cleanWebpackPlugin,
-        htmlWebpackPlugin,
-        new HotModuleReplacementPlugin(),
-      ]
-      : [
-        cleanWebpackPlugin,
-        htmlWebpackPlugin,
-        new DedupePlugin(),
-        new DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('production'),
-          },
-        }),
-        new LoaderOptionsPlugin({
-          minimize: !dev,
-          debug: dev,
-        }),
-        new UglifyJsPlugin({
-          mangle: true,
-          compress: {
-            warnings: false,
-          },
-        }),
-      ],
+    plugins: [
+      cleanWebpackPlugin,
+      htmlWebpackPlugin,
+      ...dev
+        ? []
+        : [
+          new DedupePlugin(),
+          new DefinePlugin({
+            'process.env': {
+              NODE_ENV: JSON.stringify('production'),
+            },
+          }),
+          new LoaderOptionsPlugin({
+            minimize: !dev,
+            debug: dev,
+          }),
+          new UglifyJsPlugin({
+            mangle: true,
+            compress: {
+              warnings: false,
+            },
+          }),
+        ],
+    ],
     resolve: {
       extensions: ['', '.js', '.jsx'],
     },
