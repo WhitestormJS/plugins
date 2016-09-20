@@ -5,7 +5,11 @@
   "author": "Plusb Preco <plusb21@gmail.com>",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js,.jsx .",
+    "serve": "webpack-dev-server --hot --open --env.dev",
+    "build": "webpack"
   },
   "license": "MIT",
   "homepage": "https://github.com/WhitestormJS/plugins#readme",
@@ -34,7 +38,8 @@
     "eslint-plugin-import": "^1.15.0",
     "eslint-plugin-react": "^6.3.0",
     "html-webpack-plugin": "^2.22.0",
-    "webpack": "^2.1.0-beta.23",
+    "react-hot-loader": "^3.0.0-beta.4",
+    "webpack": "^2.1.0-beta.22",
     "webpack-dev-server": "^1.16.1"
   }
 }
