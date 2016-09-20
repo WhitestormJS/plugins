@@ -1,16 +1,12 @@
 import {join} from 'path';
-import webpack from 'webpack';
+import {DefinePlugin, LoaderOptionsPlugin, optimize} from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 const {
-  DefinePlugin,
-  LoaderOptionsPlugin,
-  optimize: {
-    DedupePlugin,
-    UglifyJsPlugin,
-  },
-} = webpack;
+  DedupePlugin,
+  UglifyJsPlugin,
+} = optimize;
 
 const htmlWebpackPlugin = new HTMLWebpackPlugin({
   template: 'templates/index.ejs',
