@@ -1,8 +1,11 @@
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 
 function App() {
   return (
-    <div>hello!!</div>
+    <RaisedButton onClick={() => alert('WHS!')}>
+      Hello!
+    </RaisedButton>
   );
 }
 
