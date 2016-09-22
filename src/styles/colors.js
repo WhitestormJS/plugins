@@ -10,7 +10,6 @@
 // Colors
 export const uiPurple = '#9b61e3';
 export const uiBlue = '#0099e5';
-export const uiGreen = '';
 export const uiOrange = '#ffae54';
 export const uiGreen = '#B8E361';
 
