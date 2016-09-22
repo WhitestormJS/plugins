@@ -1,18 +1,31 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
+import {Card, CardActions} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import SearchBar from '../SearchBar';
 import {uiDarkBlock$} from '../../styles/colors';
 
 const style = {
   backgroundColor: uiDarkBlock$,
-  justifyContent: 'space-around'
+  textAlign: 'center'
+};
+
+const logoStyle = {
+  width: 150,
+  left: 50,
+  top: 35,
+  position: 'absolute'
 };
 
 function Header() {
   return (
-    <AppBar showMenuIconButton={false} titleStyle={{display: 'none'}} style={style}>
+    <Card style={style}>
+      <img src="images/logo.png" style={logoStyle}></img>
       <SearchBar />
-    </AppBar>
+      <CardActions>
+        <FlatButton label="Plugins" />
+        <FlatButton label="Components" />
+      </CardActions>
+    </Card>
   );
 }
 
