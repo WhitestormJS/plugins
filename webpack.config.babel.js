@@ -1,5 +1,10 @@
 import {join} from 'path';
-import {DefinePlugin, LoaderOptionsPlugin, optimize} from 'webpack';
+import {
+  DefinePlugin,
+  LoaderOptionsPlugin,
+  HotModuleReplacementPlugin,
+  optimize,
+} from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 
@@ -16,20 +21,22 @@ const htmlWebpackPlugin = new HTMLWebpackPlugin({
 const cleanWebpackPlugin = new CleanWebpackPlugin(['app']);
 
 function config({dev = false} = {}) {
-  process.env.BABEL_ENV = dev ? 'web-development' : 'web';
+  if (dev) {
+    process.env.BABEL_ENV = 'development';
+  }
 
   return {
     devtool: dev ? 'eval-source-map' : 'hidden-source-map',
     entry: [
       ...(dev
         ? [
-          'react-hot-loader/patch',
           'webpack-dev-server/client?http://localhost:8080',
           'webpack/hot/only-dev-server',
+          'react-hot-loader/patch',
         ]
         : []),
       'babel-polyfill',
-      './src/index.jsx',
+      './src/index',
     ],
     output: {
       path: join(__dirname, 'app'),
@@ -50,8 +57,10 @@ function config({dev = false} = {}) {
     plugins: [
       cleanWebpackPlugin,
       htmlWebpackPlugin,
-      ...dev
-        ? []
+      ...(dev
+        ? [
+          new HotModuleReplacementPlugin(),
+        ]
         : [
           new DedupePlugin(),
           new DefinePlugin({
@@ -69,7 +78,7 @@ function config({dev = false} = {}) {
               warnings: false,
             },
           }),
-        ],
+        ]),
     ],
     resolve: {
       extensions: ['', '.js', '.jsx'],
