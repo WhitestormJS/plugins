@@ -81,7 +81,7 @@ function config({dev = false} = {}) {
         ]),
     ],
     resolve: {
-      extensions: ['', '.js', '.jsx'],
+      extensions: ['.js', '.jsx'],
     },
   };
 }
