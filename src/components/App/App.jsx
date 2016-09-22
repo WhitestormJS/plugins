@@ -1,11 +1,13 @@
 import React from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+import Header from '../Header';
+import SearchBar from '../SearchBar';
 
 function App() {
   return (
-    <RaisedButton onClick={() => alert('WHS!')}>
-      Hello!
-    </RaisedButton>
+    <section>
+      <Header />
+      <SearchBar />
+    </section>
   );
 }
 
