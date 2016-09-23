@@ -5,7 +5,7 @@ import webpackConfig from '../webpack.config.babel';
 
 const config = webpackConfig({dev: true});
 const host = 'localhost';
-const port = 3000;
+const port = 8080;
 
 (new WebpackDevServer(webpack(config), {
   hot: true,
