@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import Radium from 'radium';
+import _ from 'lodash';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
-import {uiDarkBox$, uiDarkBox_} from '../../styles/colors';
+import Chip from 'material-ui/Chip';
+import {uiDarkBlock$, uiDarkBox$, uiDarkBox_} from '../../styles/colors';
 
 const style = {
   backgroundColor: uiDarkBox$,
   textAlign: 'center',
-  margin: '10px 0'
+  margin: '10px auto',
+  maxWidth: 850
 };
 
 const headerStyle = {
@@ -20,7 +23,13 @@ const linkStyle = {
   ':hover': {
     textDecoration: 'underline'
   }
-}
+};
+
+const chipStyle = {
+  display: 'inline-block',
+  margin: '0 5px',
+  backgroundColor: uiDarkBlock$
+};
 
 @Radium
 export default class PluginCard extends Component {
@@ -34,10 +43,14 @@ export default class PluginCard extends Component {
           titleStyle={headerStyle}
           textStyle={{paddingRight: 0}}
         />
-        { this.props.description ?
-          <CardText>{this.props.description}</CardText>
+        {
+          this.props.description ?
+          <CardText style={{fontSize: 18}}>{this.props.description}</CardText>
           : null
         }
+        <CardText style={{padding: 0}}>{
+          _.map(this.props.tags, (name, i) => <Chip key={i} style={chipStyle}>{name}</Chip>)
+        }</CardText>
       </Card>
     );
   }

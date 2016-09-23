@@ -6,7 +6,7 @@ export default class PluginList extends Component {
     return (
       <div>
         <PluginCard name="whs-component-terrain" description="A basic terrain plugin" />
-        <PluginCard name="whs-component-skybox" />
+        <PluginCard name="whs-component-skybox" tags={['hello', 'world']} />
       </div>
     );
   }
