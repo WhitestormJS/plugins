@@ -10,6 +10,7 @@ const style = {
 
 const containerStyle = {
   display: 'flex',
+  height: 70,
   justifyContent: 'space-around'
 };
 
@@ -25,7 +26,7 @@ function Header() {
     <Card style={style} containerStyle={containerStyle}>
       <img src="images/logo.png" style={logoStyle}></img>
       <SearchBar />
-      <CardActions>
+      <CardActions style={{alignSelf: 'center'}}>
         <FlatButton label="Plugins" />
         <FlatButton label="Components" />
       </CardActions>
