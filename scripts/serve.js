@@ -17,7 +17,7 @@ const port = 8080;
     return;
   }
 
-  const url = `http://localhost:${port}/;`;
+  const url = `http://localhost:${port}/`;
 
   console.log(`Listening at ${url}`); // eslint-disable-line no-console
   opn(url);
