@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import {uiDarkBox$} from '../../styles/colors';
 
 const style = {
@@ -19,7 +19,12 @@ export default class PluginCard extends Component {
         <CardHeader
           title={this.props.name}
           titleStyle={headerStyle}
+          textStyle={{paddingRight: 0}}
         />
+        { this.props.description ?
+          <CardText>{this.props.description}</CardText>
+          : null
+        }
       </Card>
     );
   }
