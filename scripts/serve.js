@@ -4,20 +4,21 @@ import opn from 'opn';
 import webpackConfig from '../webpack.config.babel';
 
 const config = webpackConfig({dev: true});
-const port = 8080;
+const host = 'localhost';
+const port = 3000;
 
 (new WebpackDevServer(webpack(config), {
   hot: true,
   historyApiFallback: true,
 }))
-.listen(port, 'localhost', (err) => {
+.listen(port, host, (err) => {
   if (err) {
     console.log(err); // eslint-disable-line no-console
 
     return;
   }
 
-  const url = `http://localhost:${port}/`;
+  const url = `http://${host}:${port}/`;
 
   console.log(`Listening at ${url}`); // eslint-disable-line no-console
   opn(url);
