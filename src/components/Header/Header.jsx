@@ -5,20 +5,24 @@ import SearchBar from '../SearchBar';
 import {uiDarkBlock$} from '../../styles/colors';
 
 const style = {
-  backgroundColor: uiDarkBlock$,
-  textAlign: 'center'
+  backgroundColor: uiDarkBlock$
+};
+
+const containerStyle = {
+  display: 'flex',
+  justifyContent: 'space-around'
 };
 
 const logoStyle = {
-  width: 150,
-  left: 50,
-  top: 35,
-  position: 'absolute'
+  height: 50,
+  alignSelf: 'center',
+  position: 'relative',
+  margin: '0 10px'
 };
 
 function Header() {
   return (
-    <Card style={style}>
+    <Card style={style} containerStyle={containerStyle}>
       <img src="images/logo.png" style={logoStyle}></img>
       <SearchBar />
       <CardActions>

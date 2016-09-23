@@ -3,7 +3,7 @@ import Radium from 'radium';
 import _ from 'lodash';
 import {Card, CardHeader, CardText} from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
-import {uiDarkBlock$, uiDarkBox$, uiDarkBox_} from '../../styles/colors';
+import {uiBlue, uiDarkBlock$, uiDarkBox$, uiDarkBox_} from '../../styles/colors';
 
 const style = {
   backgroundColor: uiDarkBox$,
@@ -49,7 +49,7 @@ export default class PluginCard extends Component {
           : null
         }
         <CardText style={{padding: 0}}>{
-          _.map(this.props.tags, (name, i) => <Chip key={i} style={chipStyle}>{name}</Chip>)
+          _.map(this.props.tags, (name, i) => <Chip key={i} style={chipStyle} labelStyle={{color: uiBlue}}>{name}</Chip>)
         }</CardText>
       </Card>
     );
