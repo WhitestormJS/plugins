@@ -43,12 +43,12 @@ function config({dev = false} = {}) {
       filename: `bundle${dev ? '' : '.[chunkhash]'}.js`,
     },
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.jsx?$/,
           include: join(__dirname, 'src'),
           loader: 'babel',
-          query: {
+          options: {
             cacheDirectory: true,
           },
         },
@@ -68,11 +68,13 @@ function config({dev = false} = {}) {
               NODE_ENV: JSON.stringify('production'),
             },
           }),
+          // backward compatibility
           new LoaderOptionsPlugin({
             minimize: !dev,
             debug: dev,
           }),
           new UglifyJsPlugin({
+            sourceMap: true,
             mangle: true,
             compress: {
               warnings: false,
