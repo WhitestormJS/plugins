@@ -49,7 +49,7 @@ function config({dev = false} = {}) {
           include: join(__dirname, 'src'),
           loader: 'babel',
           options: {
-            cacheDirectory: true,
+            cacheDirectory: dev,
           },
         },
       ],
