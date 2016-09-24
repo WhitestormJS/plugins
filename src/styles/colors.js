@@ -15,6 +15,7 @@ export const uiGreen = '#B8E361';
 
 // UI Dark
 export const uiDark$ = '#2D3134';
+export const uiDark2$ = '#17191A';
 export const uiDark_ = '#D0D4D7';
 export const uiDark_link = '#0099e5';
 export const uiDarkBlock$ = '#242729';

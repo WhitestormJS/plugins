@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 import CircularProgress from 'material-ui/CircularProgress';
 import Header from '../Header';
 import PluginList from '../PluginList';
-import {uiDark$} from '../../styles/colors';
+import {uiDark2$} from '../../styles/colors';
 
-document.body.style.background = uiDark$;
+document.body.style.background = uiDark2$;
 
 class App extends Component {
   state = {

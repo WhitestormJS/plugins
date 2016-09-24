@@ -5,9 +5,7 @@ const style = {
   maxWidth: 850,
   margin: '0 auto',
   marginTop: 70,
-  padding: '20px 100px',
-  boxShadow: 'rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',
-  background: 'url(images/binding_dark.png)'
+  padding: 20
 };
 
 function PluginList({plugins}) {

@@ -20,7 +20,7 @@ function SearchBar() {
     <TextField hintText="Search Addons..."
       style={style}
       inputStyle={{textAlign: 'center'}}
-      hintStyle={{textAlign: 'center', width: 'inherit'}}
+      hintStyle={{textAlign: 'center', width: 'inherit', color: '#B8BBBE'}}
       underlineShow={false}
       onFocus={hideWhenFocused}
     />
