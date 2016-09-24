@@ -5,7 +5,11 @@ import SearchBar from '../SearchBar';
 import {uiDarkBlock$} from '../../styles/colors';
 
 const style = {
-  backgroundColor: uiDarkBlock$
+  backgroundColor: uiDarkBlock$,
+  width: 'calc(100% - 16px)',
+  top: 8,
+  left: 8,
+  position: 'fixed'
 };
 
 const containerStyle = {

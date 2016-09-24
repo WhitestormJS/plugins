@@ -8,8 +8,7 @@ import {uiBlue, uiDarkBlock$, uiDarkBox$, uiDarkBox_} from '../../styles/colors'
 const style = {
   backgroundColor: uiDarkBox$,
   textAlign: 'center',
-  margin: '10px auto',
-  maxWidth: 850
+  margin: '10px auto'
 };
 
 const headerStyle = {
