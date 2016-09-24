@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 import AppThemeWrapper from './components/AppThemeWrapper';
 
+require('../sass/main.scss');
+
 let errorReporter = null;
 
 if (process.env.NODE_ENV !== 'production') {

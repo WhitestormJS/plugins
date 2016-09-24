@@ -7,6 +7,7 @@ import {
 } from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const {
   DedupePlugin,
@@ -36,7 +37,7 @@ function config({dev = false} = {}) {
         ]
         : []),
       'babel-polyfill',
-      './src/index',
+      './src/index'
     ],
     output: {
       path: join(__dirname, 'app'),
@@ -52,11 +53,19 @@ function config({dev = false} = {}) {
             cacheDirectory: dev,
           },
         },
-      ],
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('css!sass'),
+        }
+      ]
     },
     plugins: [
       cleanWebpackPlugin,
       htmlWebpackPlugin,
+      new ExtractTextPlugin({
+        filename: 'public/style.css',
+        allChunks: true
+      }),
       ...(dev
         ? [
           new HotModuleReplacementPlugin(),
