@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import {get} from 'axios';
+import {get} from 'axios';
 import CircularProgress from 'material-ui/CircularProgress';
 import Header from '../Header';
 import PluginList from '../PluginList';
@@ -30,20 +30,20 @@ class App extends Component {
   };
 
   componentDidMount() {
-    // get('https://api.npms.io/v2/search?q=whs+plugin')
-    //   .then(({results}) => {
-    //     this.setState({
-    //       plugins: results
-    //         .map(({module: {name, description, keywords: tags}}) => ({
-    //           name,
-    //           description,
-    //           tags,
-    //         })),
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     // TODO: fill me
-    //   });
+     get('https://api.npms.io/v2/search?q=keywords:whs-component,whs-plugin')
+       .then(({data}) => {
+         this.setState({
+           plugins: data.results
+             .map(({package: {name, description, keywords: tags}}) => ({
+               name,
+               description,
+               tags,
+             })),
+         });
+       })
+       .catch((err) => {
+          // TODO: fill me
+       });
   }
 
   render() {
