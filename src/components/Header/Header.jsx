@@ -5,6 +5,18 @@ import SearchBar from '../SearchBar';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import {uiDarkBlock$} from '../../styles/colors';
 
+require([
+  '../../images/logo_orange.png',
+  '../../images/logo_blue.png',
+  '../../images/logo_purple.png',
+  '../../images/logo_green.png',
+  '../../images/logo_fish.png',
+  '../../images/logo_bear.png',
+  '../../images/logo_rare.png',
+  '../../images/logo_veryrare.png',
+  '../../images/logo_extremelyrare.png'
+]);
+
 const style = {
   backgroundColor: uiDarkBlock$,
   width: 'calc(100% - 16px)',

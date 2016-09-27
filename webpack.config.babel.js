@@ -19,7 +19,7 @@ const htmlWebpackPlugin = new HTMLWebpackPlugin({
   inject: false,
 });
 
-const cleanWebpackPlugin = new CleanWebpackPlugin(['app']);
+const cleanWebpackPlugin = new CleanWebpackPlugin(['docs']);
 
 function config({dev = false} = {}) {
   if (dev) {
@@ -40,7 +40,7 @@ function config({dev = false} = {}) {
       './src/index'
     ],
     output: {
-      path: join(__dirname, 'app'),
+      path: join(__dirname, 'docs'),
       filename: `bundle${dev ? '' : '.[chunkhash]'}.js`,
     },
     module: {
@@ -56,6 +56,13 @@ function config({dev = false} = {}) {
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract('css!sass'),
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          loaders: [
+            'file?hash=sha512&digest=hex&name=images/[name].[ext]',
+            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          ]
         }
       ]
     },

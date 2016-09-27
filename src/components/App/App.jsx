@@ -11,21 +11,6 @@ class App extends Component {
   state = {
     isContentLoaded: true,
     plugins: [
-      {
-        name: 'foo',
-        description: 'bar',
-        tags: ['baz', 'qux'],
-      },
-      {
-        name: 'foo2',
-        description: 'bar',
-        tags: ['baz', 'qux'],
-      },
-      {
-        name: 'foo3',
-        description: 'bar',
-        tags: ['baz', 'qux'],
-      },
     ],
     keywords: [
       'whs-component',
@@ -39,11 +24,12 @@ class App extends Component {
        .then(({data}) => {
          this.setState({
            plugins: data.results
-             .map(({package: {name, description, keywords: tags}}) => ({
-               name,
-               description,
-               tags,
-             })),
+            .map(({package: {name, links: {npm: link}, description, keywords: tags}}) => ({
+              name,
+              link,
+              description,
+              tags,
+            }))
          });
        })
        .catch((err) => {
