@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Card, CardActions} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import SearchBar from '../SearchBar';
+import ClearIcon from 'material-ui/svg-icons/content/clear';
 import {uiDarkBlock$} from '../../styles/colors';
 
 const style = {
@@ -75,17 +76,21 @@ class Logo extends Component {
   }
 }
 
-function Header() {
-  return (
-    <Card style={style} containerStyle={containerStyle}>
-      <Logo />
-      <SearchBar />
-      <CardActions style={{alignSelf: 'center'}}>
-        <FlatButton label="Plugins" />
-        <FlatButton label="Components" />
-      </CardActions>
-    </Card>
-  );
+class Header extends Component {
+  render() {
+    return (
+      <Card style={style} containerStyle={containerStyle}>
+        <Logo />
+        <SearchBar handleChange={this.props.handleSearch} />
+        <CardActions style={{alignSelf: 'center'}}>
+          <FlatButton label="Plugins" onClick={this.props.changeType(['whs-plugin'])}/>
+          <FlatButton label="Components" onClick={this.props.changeType(['whs-component'])} />
+          <FlatButton icon={<ClearIcon />} style={{minWidth: 36}} onClick={this.props.changeType(['whs-plugin', 'whs-component'])} />
+        </CardActions>
+      </Card>
+    );
+  }
+  // onChange={this.props.handleSearch}
 }
 
 export {

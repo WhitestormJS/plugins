@@ -27,18 +27,19 @@ const linkStyle = {
 const chipStyle = {
   display: 'inline-block',
   margin: '0 5px',
+  cursor: 'pointer',
   backgroundColor: uiDarkBlock$
 };
 
 @Radium
 export default class PluginCard extends Component {
   render() {
-    const link = (<a href="#" style={linkStyle}>{this.props.name}</a>)
+    const _link = (<a href={this.props.link} style={linkStyle}>{this.props.name}</a>)
 
     return (
       <Card style={style}>
         <CardHeader
-          title={link}
+          title={_link}
           titleStyle={headerStyle}
           textStyle={{paddingRight: 0}}
         />
@@ -48,7 +49,7 @@ export default class PluginCard extends Component {
           : null
         }
         <CardText style={{padding: 0}}>{
-          _.map(this.props.tags, (name, i) => <Chip key={i} style={chipStyle} labelStyle={{color: uiBlue}}>{name}</Chip>)
+          _.map(this.props.tags, (name, i) => <Chip key={i} style={chipStyle} labelStyle={{color: uiBlue}} onClick={this.props.handleTags(name)}>{name}</Chip>)
         }</CardText>
       </Card>
     );

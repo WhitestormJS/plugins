@@ -8,15 +8,17 @@ const style = {
   padding: 20
 };
 
-function PluginList({plugins}) {
+function PluginList({plugins, handleTags}) {
   return (
     <div style={style}>
-      {plugins.map(({name, description, tags}, index) => (
+      {plugins.map(({name, link, description, tags}, index) => (
         <PluginCard
           key={index}
           name={name}
+          link={link}
           description={description}
           tags={tags}
+          handleTags={handleTags}
         />
       ))}
     </div>

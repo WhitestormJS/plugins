@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import {uiDarkField_, uiDark_} from '../../styles/colors';
 
@@ -11,20 +11,18 @@ const style = {
   margin: '0 10px'
 }
 
-function SearchBar() {
-  const hideWhenFocused = (e) => {
-
+class SearchBar extends Component {
+  render() {
+    return (
+      <TextField hintText="Search Addons..."
+        style={style}
+        inputStyle={{textAlign: 'center'}}
+        hintStyle={{textAlign: 'center', width: 'inherit', color: '#B8BBBE'}}
+        underlineShow={false}
+        onChange={this.props.handleChange}
+      />
+    );
   }
-
-  return (
-    <TextField hintText="Search Addons..."
-      style={style}
-      inputStyle={{textAlign: 'center'}}
-      hintStyle={{textAlign: 'center', width: 'inherit', color: '#B8BBBE'}}
-      underlineShow={false}
-      onFocus={hideWhenFocused}
-    />
-  );
 }
 
 export {

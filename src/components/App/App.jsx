@@ -27,6 +27,11 @@ class App extends Component {
         tags: ['baz', 'qux'],
       },
     ],
+    keywords: [
+      'whs-component',
+      'whs-plugin'
+    ],
+    searchValue: ''
   };
 
   componentDidMount() {
@@ -46,19 +51,63 @@ class App extends Component {
        });
   }
 
+  handleSearch(value) {
+    this.setState({searchValue: value.target.value});
+
+    get(`https://api.npms.io/v2/search?q=${value.target.value}+keywords:${this.state.keywords.join(',')}`)
+     .then(({data}) => {
+        this.setState({
+          plugins: data.results
+            .map(({package: {name, links: {npm: link}, description, keywords: tags}}) => ({
+              name,
+              link,
+              description,
+              tags,
+            }))
+       });
+     })
+     .catch((err) => {
+        // TODO: fill me
+     });
+  }
+
+  changeType(type) {
+    const _type = type;
+
+    return () => {
+      this.setState({keywords: _type});
+
+      get(`https://api.npms.io/v2/search?q=${this.state.searchValue}+keywords:${_type.join(',')}`)
+       .then(({data}) => {
+         this.setState({
+           plugins: data.results
+            .map(({package: {name, links: {npm: link}, description, keywords: tags}}) => ({
+              name,
+              link,
+              description,
+              tags,
+            }))
+         });
+       })
+       .catch((err) => {
+          // TODO: fill me
+       });
+     }
+  }
+
   render() {
     return (
       <section>
-        <Header />
+        <Header handleSearch={this.handleSearch.bind(this)} changeType={this.changeType.bind(this)} />
         {this.state.isContentLoaded
           ? (
-            <PluginList plugins={this.state.plugins} />
+            <PluginList plugins={this.state.plugins} handleTags={this.changeType.bind(this)} />
           )
           : (
             <CircularProgress size={2} />
           )}
       </section>
-    );
+    ); // handleSearch={this.handleSearchFunc}
   }
 }
 
