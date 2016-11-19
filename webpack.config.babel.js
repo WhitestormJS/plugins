@@ -1,6 +1,5 @@
 import {join} from 'path';
 import {
-  DefinePlugin,
   LoaderOptionsPlugin,
   HotModuleReplacementPlugin,
   optimize,
@@ -10,7 +9,6 @@ import CleanWebpackPlugin from 'clean-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 
 const {
-  DedupePlugin,
   UglifyJsPlugin,
 } = optimize;
 
@@ -78,7 +76,6 @@ function config({dev = false} = {}) {
           new HotModuleReplacementPlugin(),
         ]
         : [
-          new DedupePlugin(),
           new DefinePlugin({
             'process.env': {
               NODE_ENV: JSON.stringify('production'),
