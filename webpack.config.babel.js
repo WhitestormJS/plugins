@@ -5,20 +5,14 @@ import {
   HotModuleReplacementPlugin,
   optimize,
 } from 'webpack';
-import HTMLWebpackPlugin from 'html-webpack-plugin';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
+import HTMLPlugin from 'html-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CleanPlugin from 'clean-webpack-plugin';
 
 const {
   UglifyJsPlugin,
 } = optimize;
-
-const htmlWebpackPlugin = new HTMLWebpackPlugin({
-  template: 'templates/index.ejs',
-  inject: false,
-});
-
-const cleanWebpackPlugin = new CleanWebpackPlugin(['docs']);
 
 function config({dev = false} = {}) {
   if (dev) {
@@ -36,7 +30,7 @@ function config({dev = false} = {}) {
         ]
         : []),
       'babel-polyfill',
-      './src/index'
+      './src',
     ],
     output: {
       path: resolve(__dirname, 'docs'),
@@ -47,30 +41,34 @@ function config({dev = false} = {}) {
         {
           test: /\.jsx?$/,
           include: resolve(__dirname, 'src'),
-          loader: 'babel',
+          loader: 'babel-loader',
           options: {
             cacheDirectory: dev,
           },
         },
         {
           test: /\.scss$/,
-          loader: ExtractTextPlugin.extract('css!sass'),
+          loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
         },
         {
           test: /\.(jpe?g|png|gif|svg)$/i,
           loaders: [
-            'file?hash=sha512&digest=hex&name=images/[name].[ext]',
-            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-          ]
-        }
-      ]
+            'file-loader?hash=sha512&digest=hex&name=images/[name].[ext]',
+            'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false',
+          ],
+        },
+      ],
     },
     plugins: [
-      cleanWebpackPlugin,
-      htmlWebpackPlugin,
+      new CleanPlugin(['docs']),
+      new CopyPlugin([{from: 'contents'}]),
+      new HTMLPlugin({
+        template: 'templates/index.ejs',
+        inject: false,
+      }),
       new ExtractTextPlugin({
         filename: 'public/style.css',
-        allChunks: true
+        allChunks: true,
       }),
       ...(dev
         ? [
